@@ -39,7 +39,7 @@
                   const files = await response.json();
                   const listContainer = document.getElementById('file-list');
 
-                /*
+                  //first approach
                   files.forEach(file => {
                       // We only want to link to actual files (skip directories)
                       if (file.type === 'file') {
@@ -53,8 +53,10 @@
                           listContainer.appendChild(link);
                       }
                   });
-                  */
+                  
 
+                //alternative
+                /*
                 files.forEach(file => {
                     if (file.type === 'file') {
                         const link = document.createElement('a');
@@ -79,6 +81,7 @@
                         listContainer.appendChild(link);
                     }
                 });
+                */
                 
               } catch (error) {
                   console.error('Error fetching files:', error);
