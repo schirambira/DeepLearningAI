@@ -38,7 +38,8 @@
                   const response = await fetch(apiUrl);
                   const files = await response.json();
                   const listContainer = document.getElementById('file-list');
-          
+
+                /*
                   files.forEach(file => {
                       // We only want to link to actual files (skip directories)
                       if (file.type === 'file') {
@@ -52,6 +53,33 @@
                           listContainer.appendChild(link);
                       }
                   });
+                  */
+
+                files.forEach(file => {
+                    if (file.type === 'file') {
+                        const link = document.createElement('a');
+                        
+                        // OPTION A: Open the GitHub Page (Best for viewing/starring)
+                        link.href = file.html_url; 
+                
+                        // OPTION B: Open the RAW file (Best for images or direct code)
+                        // link.href = file.download_url; 
+                
+                        link.textContent = file.name;
+                        
+                        // CRITICAL: This opens the file in a new tab
+                        link.target = '_blank'; 
+                        
+                        // Security best practice when using target="_blank"
+                        link.rel = 'noopener noreferrer'; 
+                
+                        link.style.display = 'block';
+                        link.style.margin = '10px 0'; // Adds a little spacing
+                        
+                        listContainer.appendChild(link);
+                    }
+                });
+                
               } catch (error) {
                   console.error('Error fetching files:', error);
               }
