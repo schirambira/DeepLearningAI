@@ -48,14 +48,16 @@
                           
                           listContainer.appendChild(link);
                       }
-                  }); alert(x);
+                  });
               } catch (error) {
                   console.error('Error fetching files:', error);
               }
           }
 
           //call
-          getGithubFiles();
+          document.addEventListener('DOMContentLoaded', () => {
+              getGithubFiles();
+          });
           
         </script>
         
