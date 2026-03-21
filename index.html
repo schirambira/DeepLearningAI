@@ -60,6 +60,7 @@
                           link.href = file.html_url; 
                           link.textContent = file.name;
                           link.style.display = 'block'; // Put each link on a new line
+                          link.onclick = alert(0);
                           
                           listContainer.appendChild(link);
                       }
@@ -88,8 +89,6 @@
                 
                         link.style.display = 'block';
                         link.style.margin = '10px 0'; // Adds a little spacing
-
-                        link.onclick = alert(0);
                         
                         listContainer.appendChild(link);
                     }
