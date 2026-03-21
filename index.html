@@ -54,22 +54,26 @@
                   files.forEach(file => {
                       // We only want to link to actual files (skip directories)
                       if (file.type === 'file') {
-                          const link = document.createElement('a');
-                          
-                          // Link to the raw file or the GitHub view page
-                          //link.href = file.html_url; 
-                          link.textContent = file.name;
-                          link.style.display = 'block'; // Put each link on a new line
-                          
 
-                          // CRITICAL: This opens the file in a new tab
-                          link.href = `viewer.html?file=${file.html_url}`;
-                          link.target = '_blank';
-                        
+                          const blockedfiles = ['.html', '.jasper', '.rtf'];
+                          if (! blockedfiles.includes( getFileExtension(file) )) { //if (! blockedfiles.indexOf(fileToCheck) > -1) {  //skip blocked files
+                              
+                              const link = document.createElement('a');
+                              
+                              // Link to the raw file or the GitHub view page
+                              //link.href = file.html_url; 
+                              link.textContent = file.name;
+                              link.style.display = 'block'; // Put each link on a new line
+                              
+    
+                              // CRITICAL: This opens the file in a new tab
+                              link.href = `viewer.html?file=${file.html_url}`;
+                              link.target = '_blank';
+                            
+                              
+                              listContainer.appendChild(link);
 
-                        
-                          
-                          listContainer.appendChild(link);
+                          }
                       }
                   });
                   
@@ -105,6 +109,11 @@
               } catch (error) {
                   console.error('Error fetching files:', error);
               }
+          }
+
+          //get file extension
+          function getFileExtension(filename) {
+            return filename.split('.').pop();
           }
 
           //call
