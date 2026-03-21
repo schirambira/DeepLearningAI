@@ -57,13 +57,13 @@
                           const link = document.createElement('a');
                           
                           // Link to the raw file or the GitHub view page
-                          link.href = file.html_url; 
+                          //link.href = file.html_url; 
                           link.textContent = file.name;
                           link.style.display = 'block'; // Put each link on a new line
                           
 
                           // CRITICAL: This opens the file in a new tab
-                          link.target = '_blank'; 
+                          link.href = `viewer.html?p=${file.html_url}`;
                         
 
                         
